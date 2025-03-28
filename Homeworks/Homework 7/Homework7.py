@@ -291,7 +291,7 @@ class M33AnalyticOrbit:
 if __name__ == '__main__' : 
 
     IntegratedOrbit = M33AnalyticOrbit("M33PredictedOrbit") #cll the class
-    PredictedOrbit = IntegratedOrbit.OrbitIntegration(0, 0.5, 10) #call function to make orbit file
+    PredictedOrbit = IntegratedOrbit.OrbitIntegration(0, 0.1, 10) #call function to make orbit file
     M33_prediction = np.genfromtxt('M33PredictedOrbit',dtype=None,names=True) #read in file
     M33_pre_pos = np.array([M33_prediction['x'], M33_prediction['y'], M33_prediction['z']]) #put position data into array
     M33_pre_pos_mag = np.sqrt(M33_pre_pos[0]**2 +M33_pre_pos[1]**2 +M33_pre_pos[2]**2) #get magnitude of the position vector
@@ -385,13 +385,128 @@ if __name__ == '__main__' :
     #########################
     
     1. How do the plots compare?
-    The predicted position plot appears to show the distance from M31 increasing almost linearlly where as the 
-    orbit from HW 6 stays pretty almost oscillates and decreases over time
+    The position plots track closely until about 2G yr at which point they diverge,the predicted position increases
+    almost linearly where the position from HW 6 oscillates and decreases over time.
     
     2.What missing physics could make the difference?
-    The effect of MW as well as the change in direction
+    The effect of MW on the orbit is the main missing physics component that could make this difference
+    We can tell that the MW plays a role in the differences because the plots start to diverge when the MW and M31
+    start to get close to one another. Another aspect that is missing in the physics is that we are treating the galaxy
+    like a single point instead of a large groups of items.
+    -can be seen in plots below that the time when MW and M31 start to get close is around the time the original plots
+    start to diverge"""
+    #Create other graph to make time comparison
+    MW_Orbit = "Orbit_MW.txt" #Call MW orbit data
+    MWdata = np.genfromtxt(MW_Orbit, dtype=None, names=True) #generate array from text
+    MW_t = MWdata["t"]  #get specific values for MW
+    MW_x = MWdata["x"]
+    MW_y = MWdata["y"]
+    MW_z = MWdata["z"]
+    MW_vx = MWdata["vx"]
+    MW_vy = MWdata["vy"]
+    MW_vz = MWdata["vz"]
+    MW_speed = np.sqrt(MW_vx**2 + MW_vy**2 +MW_vz**2)
+    #
+    M31_t = M31_orbit["t"] #get specific values for M31
+    M31_x = M31_orbit["x"]
+    M31_y = M31_orbit["y"]
+    M31_z = M31_orbit["z"]
+    M31_vx = M31_orbit["vx"]
+    M31_vy = M31_orbit["vy"]
+    M31_vz = M31_orbit["vz"]
+    #
+    M31_speed = np.sqrt(M31_vx**2 + M31_vy**2 +M31_vz**2)
+    #
+    M33_t = M33_orbit["t"] #get specific values from M33
+    M33_x = M33_orbit["x"]
+    M33_y = M33_orbit["y"]
+    M33_z = M33_orbit["z"]
+    M33_vx = M33_orbit["vx"]
+    M33_vy = M33_orbit["vy"]
+    M33_vz = M33_orbit["vz"]
+    M33Pre_t = M33_prediction["t"]
+    M33Pre_x = M33_prediction["x"]
+    M33Pre_y = M33_prediction["y"]
+    M33Pre_z = M33_prediction["z"]
+    #
+    M33_speed = np.sqrt(M33_vx**2 + M33_vy**2 +M33_vz**2)
+    #
+# function to compute the magnitude of the difference between two vectors 
+# You can use this function to return both the relative position and relative velocity for two 
+# galaxies over the entire orbit  
+    def mag_dif(x1, x2,y1,y2,z1,z2): #fix so that it can do it with an array
+        x_dif = x1-x2
+        y_dif = y1-y2
+        z_dif = z1-z2
+        mag = np.sqrt(x_dif**2+y_dif**2+z_dif**2)
+        return mag
+    MW_M31_rel_pos = mag_dif(MW_x, M31_x, MW_y, M31_y, MW_z, M31_z)
+    MW_M31_rel_vel = mag_dif(MW_vx, M31_vx, MW_vy, M31_vy, MW_vz, M31_vz)
+    M33_M31pos_x = M33_x - M31_x
+    M33_M31pos_y = M33_y - M31_y
+    M33_M31pos_z = M33_z - M31_z
+
+#Create x, y, z position plots of all three galaxies
+    plt.rcParams['font.size'] = 10
+    fig, (ax1, ax2, ax3) = plt.subplots(3, 1,) #create plot
+    ax1.plot( MW_t, MW_x, 'r-', label='MW') #create x of MW
+    ax1.plot( M31_t, M31_x, 'g-', label='M31') #create x of M31
+    ax1.plot( M33_t, M33_x, 'b-', label='M33') #create x of M33
+    ax1.set(ylabel='x')
     
-    The MW is missing in these calculations. How might you include its effects?
-    You ccould include its effects by counting its impact into the M31 COM information
+    ax2.plot( MW_t, MW_y, 'r-', label='MW') #create y of MW
+    ax2.plot( M31_t, M31_y, 'g-', label='M31') #create y of M31
+    ax2.plot( M33_t, M33_y, 'b-', label='M33') #create y of M33
+    ax2.set(ylabel='y')
+    
+    ax3.plot( MW_t, MW_z, 'r-', label='MW') #create z of MW
+    ax3.plot( M31_t, M31_z, 'g-', label='M31') #create z of M31
+    ax3.plot( M33_t, M33_z, 'b-', label='M33') #create z of M33
+    ax3.set(ylabel='z')
+    
+    ax1.grid(visible=True) #make fig
+    ax1.legend(fontsize= "xx-small") #font size
+    ax2.grid(visible=True) #grid
+    ax2.legend(fontsize= "xx-small")
+    ax3.grid(visible=True) #grid
+    ax3.legend(fontsize= "xx-small")
+    fig.suptitle('Galaxy Positions') #name fig
+    plt.tight_layout()  
+    plt.show() #show fig
+    fig.savefig('Homework7_extragraph1.png', bbox_inches='tight') #save fig
+    
+    #Crete 3D plot of galaxy interactions
+    fig = plt.figure() #make fig
+    ax = fig.add_subplot(projection='3d', azim =160, elev = 20) #make 3D
+    ax.plot(MW_x, MW_y, MW_z, 'r', label='MW') #plot MW
+    ax.plot(M31_x, M31_y, M31_z, 'g--', label='M31') #plot M31
+    ax.plot(M33_x, M33_y, M33_z, 'b:', label='M33') #plot M33
+    ax.plot(MW_x[0], MW_y[0], MW_z[0], 'ro') #MW start
+    ax.plot(M31_x[0], M31_y[0], M31_z[0], 'go') #M31 start
+    ax.plot(M33_x[0], M33_y[0], M33_z[0], 'bo') #M33 start
+    ax.legend(fontsize= "xx-small")
+    fig.suptitle('Galaxy Positions in 3D') #name fig
+    plt.tight_layout()  
+    plt.show() #show fig
+    fig.savefig('Homework7_extragraph2.png', bbox_inches='tight') #save fig
+    
+    #3D comparison of M33 predicted and HW 6 orbit
+    fig = plt.figure()
+    ax = fig.add_subplot(projection='3d', azim =160, elev = 20)
+    ax.plot(M33_M31pos_x, M33_M31pos_y, M33_M31pos_z, 'g', label='Data Derived')
+    ax.plot(M33Pre_x, M33Pre_y, M33Pre_z, 'b', label='Predicted')
+    ax.plot(M33_M31pos_x[0], M33_M31pos_y[0], M33_M31pos_z[0], 'go')
+    ax.plot(M33Pre_x[0], M33Pre_y[0], M33Pre_z[0], 'bo')
+    fig.suptitle('M33_M31 Rel Position')
+    ax.legend(fontsize= "xx-small")
+    fig.suptitle('M33 Comparisons in 3D') #name fig
+    plt.tight_layout()  
+    plt.show() #show fig
+    fig.savefig('Homework7_extragraph3.png', bbox_inches='tight') #save fig
+    """
+    3. The MW is missing in these calculations. How might you include its effects?
+    You could include its effects by accounting for the large central mass increase from the merger of M31
+    and the Milky Way that happens at 6 Gyr and is not accounted for in the model. Before the merger,
+    you could also add an acceleration vector from the Milky Way into the simulation to include its effects.
     """
 
