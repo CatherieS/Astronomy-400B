@@ -39,7 +39,7 @@ import photutils
 
 def find_confidence_interval(x, pdf, confidence_level):
     return pdf[pdf > x].sum() - confidence_level
-
+#density contour from Lab 7
 def density_contour(xdata, ydata, nbins_x, nbins_y, ax=None, **contour_kwargs):
     """ Create a density contour plot.
     Parameters
@@ -114,12 +114,14 @@ halfRange = 1000
 bincnt = 51
 
 merged_distance_threshold = 2
+#true or false that can be adjusted so if running simulation multiple time don't need to concatinate everytime
 ConcatFileNeededFlag = False
+#to get into folder with snaps 
 snapDir = "C:\\Users\\catherine\\Anaconda\\ASTR400B\\Research\\Research7\\snapshots\\"
 
 
 
- 
+#rage of snaos being used and how many steps between each called snap
 snapList = np.arange(235,736,100)
 
 figS, axsS = plt.subplots(3, 2, figsize=(8, 10),layout="constrained")

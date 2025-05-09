@@ -7,14 +7,29 @@ Created on Mon Apr 28 16:30:54 2025
 
 
 def concatenate_snap_files(infile1, infile2, outfile):
-
+    """a function that will concatinate two files
+    
+    PARAMETERS
+    ----------
+        infile1 : `file`
+             first file to be concatinated
+        infile2 : `file`
+             second file to be concatinated
+        outfile : `file`
+             file that will store concatination of infile 1 and infile2
+    RETURNS
+    -------
+    
+    """
+#opens and reads files to be concatinated
     with open(infile1, 'r') as f1in, open(infile2, 'r') as f2in:
         
         f1line1 = f1in.readline()
         f2line1 = f2in.readline()
+        #checks to make sure files match
         if f1line1 != f2line1:
             raise RuntimeError("Snap dates don't match")
-            
+        #opens and writes concatination into outfile    
         with open(outfile, 'w') as fout:
             fout.write(f1line1) 
             
@@ -50,7 +65,7 @@ def concatenate_snap_files(infile1, infile2, outfile):
 
 #######################
 if __name__ == '__main__' : 
-    
+    #runs function for specific files for MixingPlotsMultiSnap2
     infile1 ='MW_801.txt'
     infile2 ='M31_801.txt'
     outfile = 'CONC_801.txt'
