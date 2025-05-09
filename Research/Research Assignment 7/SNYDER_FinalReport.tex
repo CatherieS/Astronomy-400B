@@ -1,0 +1,329 @@
+%% Beginning of file 'sample7.tex'
+%%
+%% Version 7. Created January 2025.  
+%%
+%% AASTeX v7 calls the following external packages:
+%% times, hyperref, ifthen, hyphens, longtable, xcolor, 
+%% bookmarks, array, rotating, ulem, and lineno 
+%%
+%% RevTeX is no longer used in AASTeX v7.
+%%
+\documentclass[linenumbers,trackchanges,twocolumn]{aastex7}
+%%
+%% This initial command takes arguments that can be used to easily modify 
+%% the output of the compiled manuscript. Any combination of arguments can be 
+%% invoked like this:
+%%
+%% \documentclass[argument1,argument2,argument3,...]{aastex7}
+%%
+%% Six of the arguments are typestting options. They are:
+%%
+%%  twocolumn   : two text columns, 10 point font, single spaced article.
+%%                This is the most compact and represent the final published
+%%                derived PDF copy of the accepted manuscript from the publisher
+%%  default     : one text column, 10 point font, single spaced (default).
+%%  manuscript  : one text column, 12 point font, double spaced article.
+%%  preprint    : one text column, 12 point font, single spaced article.  
+%%  preprint2   : two text columns, 12 point font, single spaced article.
+%%  modern      : a stylish, single text column, 12 point font, article with
+%% 		  wider left and right margins. This uses the Daniel
+%% 		  Foreman-Mackey and David Hogg design.
+%%
+%% Note that you can submit to the AAS Journals in any of these 6 styles.
+%%
+%% There are other optional arguments one can invoke to allow other stylistic
+%% actions. The available options are:
+%%
+%%   astrosymb    : Loads Astrosymb font and define \astrocommands. 
+%%   tighten      : Makes baselineskip slightly smaller, only works with 
+%%                  the twocolumn substyle.
+%%   times        : uses times font instead of the default.
+%%   linenumbers  : turn on linenumbering. Note this is mandatory for AAS
+%%                  Journal submissions and revisions.
+%%   trackchanges : Shows added text in bold.
+%%   longauthor   : Do not use the more compressed footnote style (default) for 
+%%                  the author/collaboration/affiliations. Instead print all
+%%                  affiliation information after each name. Creates a much 
+%%                  longer author list but may be desirable for short 
+%%                  author papers.
+%% twocolappendix : make 2 column appendix.
+%%   anonymous    : Do not show the authors, affiliations, acknowledgments,
+%%                  and author contributions for dual anonymous review.
+%%  resetfootnote : Reset footnotes to 1 in the body of the manuscript.
+%%                  Useful when there are a lot of authors and affiliations
+%%		    in the front matter.
+%%   longbib      : Print article titles in the references. This option
+%% 		    is mandatory for PSJ manuscripts.
+%%
+%% Since v6, AASTeX has included \hyperref support. While we have built in 
+%% specific %% defaults into the classfile you can manually override them 
+%% with the \hypersetup command. For example,
+%%
+%% \hypersetup{linkcolor=red,citecolor=green,filecolor=cyan,urlcolor=magenta}
+%%
+%% will change the color of the internal links to red, the links to the
+%% bibliography to green, the file links to cyan, and the external links to
+%% magenta. Additional information on \hyperref options can be found here:
+%% https://www.tug.org/applications/hyperref/manual.html#x1-40003
+%%
+%% The "bookmarks" has been changed to "true" in hyperref
+%% to improve the accessibility of the compiled pdf file.
+%%
+%% If you want to create your own macros, you can do so
+%% using \newcommand. Your macros should appear before
+%% the \begin{document} command.
+%%
+\newcommand{\vdag}{(v)^\dagger}
+\newcommand\aastex{AAS\TeX}
+\newcommand\latex{La\TeX}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% The following section outlines numerous optional output that
+%% can be displayed in the front matter or as running meta-data.
+%%
+%% Running header information. A short title on odd pages and 
+%% short author list on even pages. Note that this
+%% information may be modified in production.
+%%\shorttitle{AASTeX v7 Sample article}
+%%\shortauthors{The Terra Mater collaboration}
+%%
+%% Include dates for submitted, revised, and accepted.
+%%\received{February 1, 2025}
+%%\revised{March 1, 2025}
+%%\accepted{\today}
+%%
+%% Indicate AAS Journal the manuscript was submitted to.
+%%\submitjournal{PSJ}
+%% Note that this command adds "Submitted to " the argument.
+%%
+%% You can add a light gray and diagonal water-mark to the first page 
+%% with this command:
+%% \watermark{text}
+%% where "text", e.g. DRAFT, is the text to appear.  If the text is 
+%% long you can control the water-mark size with:
+%% \setwatermarkfontsize{dimension}
+%% where dimension is any recognized LaTeX dimension, e.g. pt, in, etc.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Use this command to indicate a subdirectory where figures are located.
+%%\graphicspath{{./}{figures/}}
+%% This is the end of the preamble.  Indicate the beginning of the
+%% manuscript itself with \begin{document}.
+
+\begin{document}
+
+\title{Understanding the Contributions of the Milky Way and M31 to the Merger Remnant Shape (Research Assignment 7)}
+
+%% A significant change from AASTeX v6+ is in the author blocks. Now an email
+%% address is required for each author. This means that each author requires
+%% at least one of the following:
+%%
+%% \author
+%% \affiliation
+%% \email
+%%
+%% If these three commands are not available for each author, the latex
+%% compiler will issue an error and if you force the latex compiler to continue,
+%% it will generate an incomplete pdf.
+%%
+%% Multiple \affiliation commands are allowed and authors can also include
+%% an optional \altaffiliation to indicate a status, i.e. Hubble Fellow. 
+%% while affiliations are indexed as footnotes, altaffiliations are noted with
+%% with a non-numeric footnote that is set away from the numeric \affiliation 
+%% footnotes. NOTE that if an \altaffiliation command is used it must 
+%% come BEFORE the \affiliation call, right after the \author command, in 
+%% order to place the footnotes in the proper location. Because non-numeric
+%% symbols are used, \altaffiliation should be used sparingly.
+%%
+%% In v7 the \author command takes an optional argument which provides 
+%% additional metadata about the author. Authors can provide the 16 digit 
+%% ORCID, the surname (family or last) name, the given (first or fore-) name, 
+%% and a name suffix, e.g. "Jr.". The syntax is:
+%%
+%% \author[orcid=0000-0002-9072-1121,gname=Gregory,sname=Schwarz]{Greg Schwarz}
+%%
+%% This name metadata in not shown, it is only for parsing by the peer review
+%% system so authors can be more easily identified. This name information will
+%% also be sent to the publisher so they can include it in the CROSSREF 
+%% metadata. Including an orcid will hyperlink the author name to the 
+%% author's ORCID page. Note that  during compilation, LaTeX will do some 
+%% limited checking of the format of the ID to make sure it is valid. If 
+%% the "orcid-ID.png" image file is  present or in the LaTeX pathway, the 
+%% ORCID icon will appear next to the authors name.
+%%
+%% Even though emails are now required for each author, the \email does not
+%% produce output in the compiled manuscript unless the optional "show" command
+%% is used. For example,
+%%
+%% \email[show]{greg.schwarz@aas.org}
+%%
+%% All "shown" emails are show in the bottom left of the first page. Due to
+%% space constraints, only a few emails should be shown. 
+%%
+%% To identify a corresponding author, use the \correspondingauthor command.
+%% The command appends "Corresponding Author: " to the argument it appears at
+%% the bottom left of the first page like the output from \email. 
+
+\author[orcid=0000-0000-0000-0001,sname='Catherine Snyder']{Catherine Snyder}
+\altaffiliation{Steward Observatory}
+\affiliation{University of Arizona}
+\email[show]{catitude19@arizona.edu}  
+
+\collaboration{all}{Submitted May 8th, 2025}
+
+
+\begin{abstract}
+    This paper looks at how the contributions of two merging galaxies interact and mix during a merger. This is important to galaxy evolution because it helps to understand how a remnant finds a new equilibrium after a merger, which helps to understand how galaxies form and evolve. The paper utilizes the N-body simulation of the merger LMC and SMC employed by van Der Marel el al to explore this topic. This paper specifically looks at the contributions and intermixing of the Milky Way and M31 particles to the final remnant of their merger. The work done found that although some intermixing of particles occurs, there are after a certain radius the particles tend to stay in distinct areas corresponding to the original galaxies. The radius at which the remnant was well mixed, at the end of the simulation, was 588 kpc. The findings in this paper help to understand how particles from galaxies interact, and could lead to insights about how new system equilibriums are established after mergers. 
+\end{abstract}
+
+
+\keywords{\uat{Local Group}{1} --- \uat{Dark Matter Halo}{1} --- \uat{Halo Shape}{1} --- \uat{Halo Spin}{1} --- --- \uat{Galaxy}{1} ------ \uat{Relaxation Time}{1} ---}
+
+
+
+%% Use the \collaboration command to identify collaborations. This command
+%% takes an optional argument that is either a number or the word "all"
+%% which tells the compiler how many of the authors above the command to
+%% show. For example "\collaboration[all]{(DELVE Collaboration)}" wil include
+%% all the authors above this command.
+%%
+%% Mark off the abstract in the ``abstract'' environment. 
+
+
+%% Keywords should appear after the \end{abstract} command. 
+%% The AAS Journals now uses Unified Astronomy Thesaurus (UAT) concepts:
+%% https://astrothesaurus.org
+%% You will be asked to selected these concepts during the submission process
+%% but this old "keyword" functionality is maintained in case authors want
+%% to include these concepts in their preprints.
+%%
+%% You can use the \uat command to link your UAT concepts back its source.
+
+
+%% From the front matter, we move on to the body of the paper.
+%% Sections are demarcated by \section and \subsection, respectively.
+%% Observe the use of the LaTeX \label
+%% command after the \subsection to give a symbolic KEY to the
+%% subsection for cross-referencing in a \ref command.
+%% You can use LaTeX's \ref and \label commands to keep track of
+%% cross-references to sections, equations, tables, and figures.
+%% That way, if you change the order of any elements, LaTeX will
+%% automatically renumber them.
+
+\section{Introduction} 
+The area of galaxy evolution this research will investigate is the impact that galaxy mergers have on dark matter halos. This research will specifically look at mergers in the \textbf{Local Group} which is the gravitationally bound systems of galaxies of which the Milky Way is a member. Dark matter is believed to be dispersed throughout the universe in an almost web-like structure with a vast system of filaments. \textbf{Dark Matter Halos} are the areas in the galaxy where there is a higher density of dark matter compared to the average density of dark matter in the universe. These dark matter halos are virialized dark matter distributions that are differentiated from the expansion of the universe \cite{Private communication G. Besla May 6, 2025}. The overall shape that these halos take is the \textbf{Halo Shape}, and the rotation of the halo is the \textbf{Halo Spin}. These halos are theorized to occur when multiple filaments intersect with one another. These dark matter halos are significant because they gravitationally attract baryons and are where galaxies are able to form \cite{Frenk_2012}. When two galaxies merge, there is a time it takes the system to return to equilibrium after the merger takes place which is the \textbf{Relaxation Time} \cite{2004MNRAS.349.1039N}. 
+
+A \textbf{Galaxy} is a system of stars that are gravitationally bound and have physical properties that cannot be explained by just the stars, baryons, and Newton's laws of gravity alone \cite{Willman_Strader_2012} We define galaxies as being made of stars and dark matter. Because these dark matter halos are thought of as the basic unit of cosmological structure, understanding dark matter halos is intrinsic to understanding cosmology. Researching the structure of dark matter halos, as well as halo formation and halo growth can give key insights into \textbf{Galaxy Evolution}, which is the formation and life cycle of a galaxy. Understanding halo growth requires understanding how these structures are impacted when galaxies merge. Understanding how the contributions of the two galaxies interact, and understanding the relaxation time of a galaxy can help to understand past, present, and future galaxy mergers. 
+
+The main understanding of dark matter halo mergers comes from cosmological simulations of mergers in near perfect settings. So far, the general understanding finds that the size  and spin of the halo remnant are dependent on the energy of the orbit and the angular momentum of the orbit respectively. The shape of the remnant is primarily dependent on the initial separation between the two halos as well as the spin of the mergers \cite{2019MNRAS.487..993D}. as seen in Figure 1. In Figure 1 we also get an idea of how the contributions from each galaxy spread depending on if the orbits are radial or tangential. Although the relationship between energy of a system and the spread (how compacted/extended) of a remnant appears to be direct, the correlation between the energy of a system and the radius of the scaled density profile of the remnant appears to be an inverse relationship \cite{2019MNRAS.487.1008D}. The radius of convergence for galaxies is defined as being the radius at which the relaxation time is equal to the age of the universe \cite{2004MNRAS.349.1039N}. 
+
+%% The "ht!" tells LaTeX to put the figure "here" first, at the "top" next
+%% and to override the normal way of calculating a float position.
+%% The asterisk after "figure" tells the compiler to span multiple columns
+%% if a two column style is selected.
+\begin{figure*}[ht!]
+\plotone{Figure1.png}
+\caption{Figure 10 from Drakos + MNRAS, 2019a, 487, 993. This figure shows the results from the paper's merger simulations. The top graphs are the particles of the remnants, the middle graphs are the density profiles, and the bottom graphs are the mass profiles. These results show the relations between radial orbits, tangential orbits, and where the contributions of each galaxy end up in after a merger. The red and blue particles represent the two different galaxies. This figure shows that there will be intermixing between the two galaxies but will have mainly distinct areas.
+\label{fig:general}}
+\end{figure*}
+
+
+
+A lot of the understanding of dark matter halo mergers comes from simulations done with equal mass binary systems. This is a simplified setting for mergers, as it does not take into account mergers between different sized halos or mergers between more than two halos. These simulations do not take into account halo substructures \cite{2019MNRAS.487..993D}. One of the largest issues still being examined from these simulations is what causes the central density of merger remnants to decrease, because the current simulations see an increase in central density that does not match the drop seen in central density of halos as they grow \cite{2019MNRAS.487.1008D}. Other questions left open include how the relationships and general findings of these merger simulations might change when including more complicated and more common types of mergers, such as mergers between more than two halos. 
+
+
+\section{Project} \label{sec:style}
+
+In this paper, we will examine how the contributions from the two original galaxies disperse during and after the merger. We will specifically look into the intermixing of the particles from the two different galaxies. 
+
+This project will address the question of if mergers in complicated systems with more than one galaxy influencing the merger, will coincide with the findings from the simulations of simplified mergers. It will also look into how the particles from a specific galaxy diffuse through the remnant after the merger. 
+
+Understanding what factors influence the contributions of the original galaxies as well as how they intermix can give us insight into relaxation rates of mergers as well as how newly formed galaxies reach equilibrium after a merger. It is important to galaxy evolution because it helps us understand how the galaxies in our universe evolve over time. Understanding merger remnants can help us to understand the future of younger galaxies, as well as give us insights into older galaxies. Overall, understanding the shape of the merger gives us insight into the life cycles of galaxies.
+
+\section{Methodology} \label{sec:style}
+
+The simulations used in this project are from the work done on interactions between the Milky Way galaxy and the LMC(Large Magellanic Cloud) and SMC(Small Magellanic Cloud).\cite{van_der_Marel_2012} These simulations are done using an N-body simulation which is a simulation of a system of particles and the forces acting on and between the particles in that system. The N-body system used in van Der Marel el al employs smoothed-particle hydrodynamic code, and is modeled with three different types of particles from the stellar bulge, stellar disk, and dark matter halo. This simulation runs approximately 12 Gyr.
+
+The particle types this research will be using for analysis are the Type 1 dark matter or halo particles. This research will be looking at lower resolution(VLowRes) snapshots during the merger of the two galaxies, so in roughly 4.5 Gyr, which correlates to snapshots 235 and beyond. This research will compare multiple snapshots during the merger, including snapshots 235, 335,435, 535, 635, and 735 to compare how the dispersion of the particles from the two original galaxies, changes over time. 
+
+One way the questions of this research gets addressed is by examining dark matter distribution 2-dimensional histograms in the XY, YZ, and XZ dimensions at the different snapshots. The three histograms for each snapshot have ellipses fitted to them that give the axes for the shape of the remnant at that time. Creating ratios of these axes determine if the remnant is oblate or prolate. Computing these ratios for each of the snapshots being used provides us the shape of the remnant over time. 
+
+The histograms shows the particle contributions from each of the original galaxies over time. The way this is done is by making another histogram of the remnant that shows the ratio of the Milky Way divided by the total number of particles of the system, and the ratio of the M31 particles divided by the total system particles. The histogram of this ratio illustrates the areas dominated by Milky Way particles and the areas dominated by M31 particles in the remnant. Generating this histogram for the different snapshots shows us how the contributions from each galaxy get distributed over time after the merger. We will define any ratio between 0.4 and 0.6 to be "well-mixed". The most balanced ratio of M31 particles to Milky Way particles will be 0.5. To get the mixing number we use the equation: \(2*(0.5-(r-0.5))\). Where are is the ratio of original galaxy particles to total system particles. The second figure will be a similar histogram to the first figure, with a look at the mixing number of the particles in the remnant. The third figure will look at the total number of "well mixed" particles divided by the total number of particles at that radius (referred to as the mixing number ratio on the graph), compared to the radius or the remnant. With this third graph, we can determine a "well-mixed" radius where the mixing number ratio is above 0.25.
+The models below represent the questions being investigated by this project:
+\begin{figure*}[ht!]
+\plotone{Figure2.png}
+\caption{The figure is a three dimensional plot of a sample of the particles before during the merger. The red particles represent the M31 galaxy and the blue particles represent the Milky Way galaxy. These illustrate the investigation this project is doing into the contributions from the two original galaxies to the final remnant.
+\label{fig:general}}
+\end{figure*}
+
+Due to the path of collision the Milky Way and M31 are on, the expected outcome of this research is to find a 3-dimensional simulation with the qualities similar to the radial orbit remnants shown in Figure 10 from Drakos et al. The anticipated end result will have particles from each of the galaxies intermixing, but with one galaxy’s particle type dominating the center of the remnant while the other galaxy's particle types become more prominent the further you get from the center of the remnant. 
+
+\section{Results} \label{sec:style}
+Figure 3 shows the histogram of the ratio of Milky Way to M31 particles. This illustrates what areas of the remnant are dominated by the Milky Way particles and what areas are dominated by the M31 particles. Figure 3 shows these ratio histograms throughout different snapshots. This shows how the contributions from the two original galaxies changes during the merger. The figure shows histograms from snapshots: 235, 335, 435, 535, 635, 735. Figure 3 displays that although the particles from the Milky Way and M31 combine during the remnant, overall the contributions from each original galaxy remain distinct and do not intermix completely. 
+\begin{figure*}[ht!]
+\plotone{Figure3.png}
+\caption{The figure shows the particle distribution over time. The color gradient goes from the red end which is M31 dominated, to the blue end which Milky Way dominated. This figure shows that full intermixing does not occur and comparable sections of the remnant remain dominated by each of the original galaxies' particles.
+\label{fig:general}}
+\end{figure*}
+
+Figure 4 shows a histogram mixing number of the particles in the remnant. This figure is similar to Figure 3 but with the gradient going from red which is the most well-mixed particles, to purple which is the least well-mixed particles.The figure shows histograms from snapshots: 235, 335, 435, 535, 635, 735. The cut off of well-mixed is established at a mixing number greater than 0.8. With this graph we were able to see how well mixed the particles were throughout the remnant. 
+\begin{figure*}[ht!]
+\plotone{Figure4.png}
+\caption{The figure the mixing number of the remnant. This figure shows how much intermixing occurs and gives us an idea of where well-mixed particles tend to be in the remnant.
+\label{fig:general}}
+\end{figure*}
+
+Figure 5 shows mixing number (defined in the Methodology section), compared to the radius or the remnant. Comparing Figure 5 to Figure 4 we determined a "well-mixed" radius is where the mixing number ratio is above 0.25. The bar graph has a line showing the "well-mixed radius" at the radius where the ratio is greater that 0.25.  This shows how the "well-mixed" radius changes during the merger. The figure shows bar graphs from snapshots: 235, 335, 435, 535, 635, 735. Figure 5 shows towards the end of the simulation, at snapshot 735, the "well-mixed ratio" is 588 kpc.
+\begin{figure*}[ht!]
+\plotone{Figure5.png}
+\caption{Figure 5 shows mixing number (defined in the Methodology section), compared to the radius or the remnant. The bar graph has a line showing the "well-mixed radius" at the radius where the ratio is greater that 0.25.  This shows how the "well-mixed" radius changes during the merger. The figure shows bar graphs from snapshots: 235, 335, 435, 535, 635, 735. Figure 5 shows towards the end of the simulation, at snapshot 735, the "well-mixed ratio" is 588 kpc. 
+\label{fig:general}}
+\end{figure*}
+
+\section{Discussion} \label{sec:style}
+ Figure 3 shows that although there is some intermixing of particles from the two original galaxies during the merger, they tend to stay grouped mainly in sections corresponding to their original galaxy. The two sections with particles dominating from Milky Way and M31 stayed on separate sides of the remnant, and the center of the remnant was where the most equal intermixing occurred. This disproved the hypothesis that one galaxy's particles would dominate in the center. 
+
+The results from Figure 5 show where the radius of intermixing is throughout the merger. Towards the end of the simulation, we find the remnant to have a "well-mixed radius" of around 600 kpc. The radius can give insights into how the system relaxes which would help understand the relatxtion rate of the galaxy. 
+
+The uncertainties from Figures 3-5 analysis come from the fact that the analysis uses low resolution snapshots. Using higher resolution files would make the histograms more accurate, as we would have more precise particle data. Another uncertainty in this analysis comes from the fact the particles and influence of the M33 galaxy were excluded from the results. The halo particles from the M33 may have an impact on the mixing of these galaxies that cannot be seen in the current figures. Furthermore, the code used to make these figures requires that there is an equal number of particles from each of the galaxies. If one galaxy has more particles, it would skew the ratios and impact the final results. Therefore the analysis methods for analyzing particle contributions would have to be altered to look at mergers of galaxies with larger differences in size.
+
+\section{Conclusions} 
+This paper looks at how the contributions of two merging galaxies interact and mix during a merger. This is important to galaxy evolution because it helps to understand how a remnant finds a new equilibrium after a merger, which helps to understand how galaxies form and evolve. The paper utilizes the N-body simulation of the merger LMC and SMC employed by van Der Marel el al to explore this topic. This paper specifically looks at the contributions and intermixing of the Milky Way and M31 particles to the final remnant of their merger.
+
+One of the key findings in this analysis is that the contributions of the two galaxies do intermix at the center of the galaxy, but after a certain radius the intermixing is less prominent and distinct areas of particles correspond to the original galaxies the particles came from. This finding helps us understand how the particles interact with one another as they settle to an equilibrium. This finding did not agree with the hypothesis because one original galaxy's particles did not make up the center of the remnant. 
+
+Another finding of this paper was the "well-mixed radius" of 588 kpc that was found in snapshot 735. This radius gives us an understanding of where the particles of the two original galaxies intermix> The change in this radius over times gives insights into how the remnant relaxes over time.
+
+Future direction this work could go is including the M33 halo particles in the system to see how they interact with the other remnant contributions. Other applications could look into finding the "well-mixed radius" of merger with more galaxies or with galaxies of different sizes. Other work could be investigate a connection between the relaxation time of the system and the "well-mixed radius" of the system. 
+
+\section{Acknowledgements} 
+This work has been supported by Dr. Gurtina Besla in her lectures, labs, and assignments. Her support with technical issues and help narrowing down focus of analysis are also deeply appreciated. The technical support and feedback of Himansh Rathore is gratefully acknowledged. Support with troubleshooting, code support, and feedback from Michael Snyder is also gratefully acknowledged. This work made use of the following software packages: \texttt{astropy} \citep{astropy:2013, astropy:2018, astropy:2022}, \texttt{Jupyter} \citep{2007CSE.....9c..21P, kluyver2016jupyter}, \texttt{matplotlib} \citep{Hunter:2007}, \texttt{numpy} \citep{numpy}, \texttt{python} \citep{python}, and \texttt{scipy} \citep{2020SciPy-NMeth, scipy_15366870}.
+
+Software citation information aggregated using \texttt{\href{https://www.tomwagg.com/software-citation-station/}{The Software Citation Station}} \citep{software-citation-station-paper, software-citation-station-zenodo}.
+
+
+
+%% For this sample we use BibTeX plus aasjournalv7.bst to generate the
+%% the bibliography. The sample7.bib file was populated from ADS. To
+%% get the citations to show in the compiled file do the following:
+%%
+%% pdflatex sample7.tex
+%% bibtext sample7
+%% pdflatex sample7.tex
+%% pdflatex sample7.tex
+
+\bibliography{Resources}{}
+\bibliographystyle{aasjournalv7}
+
+%% This command is needed to show the entire author+affiliation list when
+%% the collaboration and author truncation commands are used.  It has to
+%% go at the end of the manuscript.
+%\allauthors
+
+%% Include this line if you are using the \added, \replaced, \deleted
+%% commands to see a summary list of all changes at the end of the article.
+%\listofchanges
+
+\end{document}
+
+% End of file `sample7.tex'.
